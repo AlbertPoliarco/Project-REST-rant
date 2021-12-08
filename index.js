@@ -14,4 +14,6 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
     res.render('Error404')
 })
+// GET /places
+app.use("/places", require("./controllers/places"))
 app.listen(process.env.PORT)
