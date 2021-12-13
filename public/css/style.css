@@ -1,6 +1,7 @@
 h1 {
     text-align: center;
     color: cornflowerblue;
+    text-decoration: none;
   }
 
 p {
@@ -21,11 +22,13 @@ nav {
     nav li {
         display: inline;
         margin-right: 25px;
+        
     }
     
     nav a {
         color: white;
         font-size: 1.5em;
+        text-decoration: none;
     }
     
     nav a:hover {
