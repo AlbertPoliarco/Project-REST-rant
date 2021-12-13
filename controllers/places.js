@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
     res.render('places/Show', { place: places[id], id })
   }
 })
-
+// Index
 router.get('/', (req, res) => {
     let places = [{
         name: 'H-Thai-ML',
@@ -47,6 +47,20 @@ router.post("/", urlencodedParser, (req, res) => {
   console.log(obj);
   res.send("POST /places")
 })
+// Edit
+router.get('/:id/edit', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+      res.render('error404')
+  }
+  else if (!places[id]) {
+      res.render('error404')
+  }
+  else {
+    res.render('places/edit', { place: places[id] })
+  }
+})
+
 
 
 // Add a Place
@@ -81,4 +95,4 @@ router.delete('/places/:id', (req, res) => {
   }
 })
 
-module.exports = router
+module.exports = router;

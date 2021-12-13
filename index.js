@@ -22,19 +22,7 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
     res.render('Error404')
 })
-// Delete
-router.delete('/places/:id', (req, res) => {
-    let id = Number(req.params.id)
-    if (isNaN(id)) {
-      res.render('error404')
-    }
-    else if (!places[id]) {
-      res.render('error404')
-    }
-    else {
-      res.send('STUB DELETE places/:id')
-    }
-  })
+
 
 // Listen for connections
 app.listen(process.env.PORT)
