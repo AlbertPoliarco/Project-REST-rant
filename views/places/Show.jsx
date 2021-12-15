@@ -1,37 +1,37 @@
-const React = require("react")
-const Def = require("../Default")
+const React = require('react')
+const Default = require('../Default')
 
-function Show({place, id}) {
-    return (
-        <Def>
-            <main>
-                <h1>{place.name}</h1>
-                <p>{place.cuisines}</p>
-                <img src={place.pic} alt={place.name} />
-                <p>Located in {place.city}, {place.state}</p>
-                <a href={`/places/${id}/edit`} className="btn btn-warning"> 
-  Edit
-</a>     
-
-                <form method="POST" action={`/places/${id}?_method=DELETE`}> 
-  <button type="submit" className="btn btn-danger">
-    Delete
-  </button>
-</form> 
-
-                <div>
-                    <h2>Rating</h2>
-                    <p>Currently unrated</p>
-                </div>
-                <div>
-                    <h2>Comments</h2>
-                    <p>No comments yet!</p>
-                </div>
-            </main>
-        </Def>
-    )
+function Show(data) {
+  return (
+    <Default>
+      <h2>{data.place.name}</h2>
+      <img src={data.place.pic} alt={data.place.name} />
+      <h3>Location: {data.place.city}, {data.place.state}</h3>
+      <h4>Cuisines: {data.place.cuisines}</h4>
+      <section>
+        <h1>Ratings</h1>
+        <h3>No ratings yet...</h3>
+      </section>
+      <section>
+        <h1>Comments</h1>
+        <h3>No comments yet...</h3>
+      </section>
+      <a href={`/places/${data.id}/edit`} className="btn btn-warning">
+        Edit
+      </a>
+      <form method="POST" action={`/places/${data.id}?_method=DELETE`}>
+        <button type="submit" className="btn btn-danger">
+          Delete
+        </button>
+      </form>
+    </Default>
+  )
 }
 
-
-
 module.exports = Show
+    
+
+
+
+
+module.exports = Show;
