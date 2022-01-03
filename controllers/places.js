@@ -2,42 +2,32 @@ const router = require('express').Router()
 const db = require('../models')
 
 // Index route
-router.get('/', (req, res) => {
-    db.Place.find()
-    .then((places) => {
-        res.render('places/index', { places })
-    })
-    .catch(err => {
-        console.log(err)
-        res.render('error404')
-    })
+router.get("/", (req, res) => {
+  db.Place.find()
+      .then(places => {
+          res.render("places/index", {places})
+      })
+      .catch(err => {
+          console.log("ERR: " + err)
+          res.render("Error404")
+      })
 })
-
 // POST route
-router.post('/', (req, res) => {
-  if (req.body.pic === '') { req.body.pic = undefined}
-  if (req.body.city === '') { req.body.city = undefined}
-  if (req.body.state === '') { req.body.state = undefined}
+router.post("/", (req, res) => {
+  if(req.body.pic === "") {
+      req.body.pic = undefined
+  }
   db.Place.create(req.body)
-  .then(() => {
-    res.redirect('/places')
-  })
-  .catch(err => {
-    if (err && err.name == 'ValidationError') {
-      let message = 'Validation Error: '
-      for (var field in err.errors) {
-          message += `${field} was ${err.errors[field].value}. `
-          message += `${err.errors[field].message}`
-      }
-      console.log('Validation error message', message)
-      res.render('places/new', { message })
-  }
-  else {
-      res.render('error404')
-  }
-  })
+      .then(() => {
+          res.redirect("/places")
+      })
+      .catch(err => {
+          console.log("ERR: " + err)
+          res.render("Error404")
+      })
 })
 
+// New route
 router.get('/new', (req, res) => {
   res.render('places/new')
 })

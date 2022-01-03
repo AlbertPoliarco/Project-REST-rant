@@ -10,31 +10,33 @@ function Show(data) {
             Not yet rated
         </h3>
     )
-    if (data.place.comments.length) {
-        let sumRatings = data.place.comments.reduce((tot, c) => {
-            return tot + c.stars
+    if(data.place.comments.length) {
+        let sumRatings = data.place.comments.reduce((total, comment) => {
+            return total + comment.stars
         }, 0)
-        let averageRating = sumRatings / data.place.comments.length
+        let averageRating = Math.round(sumRatings / data.place.comments.length)
+        let stars = ""
+        for(let i = 0; i < averageRating; i++) {
+            stars += "⭐️"
+        }
         rating = (
             <h3>
-                {Math.round(averageRating)} starts
+                {stars} stars
             </h3>
         )
+    }
+    if (data.place.comments.length) {
         comments = data.place.comments.map(c => {
-            return (
-                <div className="border" key={c.id}>
-                    <h2 
-                        className="rant">{c.rant ? 'Rant! 😡' : 'Rave! 😻'}
-                    </h2>
-                    <h4>{c.content}</h4>
-                    <h3>
-                        <stong>- {c.author}</stong>
-                    </h3>
-                    <h4>
-                        Rating: {c.stars}
-                    </h4>
-                </div>
-            )
+          return (
+            <div className="border" key={c.id}>
+              <h2 className="rant">{c.rant ? 'Rant! 😡' : 'Rave! 😻'}</h2>
+              <h4>{c.content}</h4>
+              <h3>
+                <stong>- {c.author}</stong>
+              </h3>
+              <h4>Rating: {c.stars}</h4>
+            </div>
+          )
         })
     }
     return (
@@ -53,7 +55,7 @@ function Show(data) {
                 </form>
                 <div>
                     <h2>Rating</h2>
-                    <p>Currently unrated</p>
+                    {rating}
                 </div>
                 <div>
                     <h2>Comments</h2>
@@ -76,7 +78,7 @@ function Show(data) {
                         <input type="checkbox" name="rant" id="rant" />
 
                         <input type="submit" value="Submit" />
-                        
+                         
                     </form>
                 </div>
             </main>
