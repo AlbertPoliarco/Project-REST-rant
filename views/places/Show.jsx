@@ -1,7 +1,7 @@
 const React = require("react")
 const Def = require("../Default")
 
-function Show(data) {
+function Show (data) {
     let comments = (
         <p className="inactive">No comments yet!</p>
     )
@@ -72,7 +72,7 @@ function Show(data) {
                         <input type="textarea" name="content" id="content" className="form-control" />
 
                         <label htmlFor="stars">Star Rating</label>
-                        <input type="number" step={.5} max={5} name="stars" id="stars" />
+                        <input type="range" step='1' max='5' name="stars" id="stars" />
 
                         <label htmlFor="rant">Rant?</label>
                         <input type="checkbox" name="rant" id="rant" />

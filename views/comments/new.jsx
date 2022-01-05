@@ -11,7 +11,7 @@ function New_Comment() {
             <input type="textarea" name="content" id="content" />
 
             <label htmlFor="stars">Star Rating</label>
-            <input type="number" step={.5} name="stars" id="stars" />
+            <input type="number" step={1} name="stars" id="stars" />
 
             <label htmlFor="rant">Rant?</label>
             <input type="checkbox" name="rant" id="rant" />
